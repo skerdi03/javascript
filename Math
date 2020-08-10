@@ -1,0 +1,44 @@
+Math.findmaxDigitAfterPoint = function(nr1, nr2){
+        nr1 = nr1.toString(); 
+        nr2 = nr2.toString();
+
+        function numberAfterPoint(number){
+            var n = number.split('.');
+            var secondElement = n[1];
+            return secondElement ? secondElement : 0;
+        }
+        function findmaxDigitAfterPoint(nr1, nr2){
+            var l1 = nr1.length || 0;
+            var l2 = nr2.length || 0;
+            var max = Math.max(l1, l2);
+           return max;
+        }
+        return findmaxDigitAfterPoint(numberAfterPoint(nr1), numberAfterPoint(nr2));
+
+    }
+
+    Math.subtraction = function(nr1, nr2){
+        var max = this.findmaxDigitAfterPoint(nr1, nr2);
+        return (this.multiplication(nr1, this.pow(10, max)) - this.multiplication(nr2, this.pow(10, max))) / this.pow(10, max);
+    }
+    Math.add = function(nr1, nr2){
+        var max = this.findmaxDigitAfterPoint(nr1, nr2);
+        return (this.multiplication(nr1, this.pow(10, max)) + this.multiplication(nr2, this.pow(10, max))) / this.pow(10, max);
+    }
+   
+
+    Math.multiplication = function(nr1, nr2){
+        nr1 = nr1.toString(); 
+        nr2 = nr2.toString();
+
+        function lengthAfterPoint(number){
+            var n = number.split('.');
+            var secondElement = n[1];
+            return secondElement ? secondElement.length : 0;
+        }
+        function numberWithoutPoint(number){
+            return number.replace('.', '');
+        }
+        
+        return (numberWithoutPoint(nr1) * numberWithoutPoint(nr2)) / this.pow(10, (lengthAfterPoint(nr1) + lengthAfterPoint(nr2)));
+    }
